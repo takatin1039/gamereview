@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gamereview</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+    <% if user_signed_in? %>
+  <body>
+    <br>
+    <br>
+    <br>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          
+        </nav>
+        <nav class="text-muted">
+          <span ><strong>Gamers</strong></span>
+        </nav>
+        <nav> 
+        <ul class="nav navbar-nav navbar-right">
+        
+        <li class="">
+          <%= link_to '投稿フォーム', new_post_image_path, class:"glyphicon glyphicon-pencil" %>
+        </li>
+        <li class="">
+          <%= link_to "ゲーム一覧", root_path, class:"glyphicon glyphicon-th-large"  %>
+        </li>
+
+        <li class="">
+          <%= link_to 'マイページ', user_path(current_user.id), class:"glyphicon glyphicon-user " %>
+        </li>
+        <li class="">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out logout" %>
+        </li>
+
+         </ul>
+       </nav>
+     </div>
+
+    </header>
+        <% else %>
+        <header class="navbar navbar-fixed-top navbar-inverse">
+          <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          
+        </nav>
+        <nav class="text-muted">
+          <span><strong>Gamers</strong></span>
+        </nav>
+        <nav>
+        <ul class="nav navbar-nav navbar-right">
+
+        <li class="">
+          <%= link_to "新規登録", new_user_registration_path, class:"glyphicon glyphicon-edit sign_up" %>
+        </li>
+        <li class="">
+          <%= link_to 'ログイン', new_user_session_path, class:"glyphicon glyphicon-log-in sign-in" %>
+        </li>
+        </ul>
+      </nav>
+
+     </div>
+   </header>
+   <% end %>
+   <main>
+    <%= yield %>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-9">
+          CopyRight Infratop.inc
+        </div>
+      </div>
+    </div>
+  </footer>
+  </body>
+</html>
